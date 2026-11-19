@@ -29,13 +29,13 @@ R: elas dependem de um legado da classe InventarioLegadoWSS
 ## Problema 2 — o ciclo de vida de Reserva
 
 **Em que consiste o problema, e o que acontece quando o sistema cresce:**
-
+o estado da reserva usa String e regras de retirar, devolver e cancelar
 
 **Princípio SOLID violado:**
-
+principio aberto/fechado
 
 **Classes afetadas (pelo nome):**
-
+reserva
 
 ---
 
