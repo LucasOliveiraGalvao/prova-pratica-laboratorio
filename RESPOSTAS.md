@@ -44,13 +44,13 @@ reserva
 ## Padrão aplicado ao Problema 1
 
 **O problema que ele resolve (descreva antes de nomear o padrão):**
-
+tinha que meio que integrar de uma forma externa sem mexxer no legado das classes
 
 **Nome do padrão:**
-
+adapter
 
 **Alternativa descartada e por que ela não resolveria por completo:**
-
+Bom sendo sincero eu usei os materiais das aulas como base, material da aula 10.
 
 ## Padrão aplicado ao Problema 2
 
