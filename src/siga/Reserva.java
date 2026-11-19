@@ -1,15 +1,8 @@
 package siga;
 
 /**
- * PROBLEMA 2 - o ciclo de vida resolvido com condicionais sobre um campo
- * de texto.
- *
- * Tres sintomas: (a) as regras de transicao estao espalhadas pelos metodos
- * publicos, e ninguem le o ciclo de vida inteiro num lugar so; (b) um
- * estado novo exige alterar todos eles; e (c) a situacao e texto, entao um
- * erro de digitacao so aparece em execucao.
- *
- * Ciclo de vida vigente - E ELE QUE DEVE SER PRESERVADO:
+ * Reserva que delega o ciclo de vida para objetos de estado.
+ * Ciclo de vida vigente:
  *   SOLICITADA  --retirar-->  EM_USO
  *   SOLICITADA  --cancelar-->  ENCERRADA
  *   EM_USO  --devolver-->  ENCERRADA
@@ -23,40 +16,25 @@ public class Reserva {
     public Reserva(Usuario solicitante, Equipamento item) {
         this.solicitante = solicitante;
         this.item = item;
-        this.situacao = "SOLICITADA";
+        this.estado = new Solicitada();
     }
 
-    private String situacao;
+    private EstadoReserva estado;
 
     public String getSituacao() {
-        return situacao;
+        return estado.getSituacao();
     }
 
     public void retirar() {
-        if ("SOLICITADA".equals(situacao)) {
-            situacao = "EM_USO";
-        } else {
-            throw new IllegalStateException(
-                    "Nao e possivel retirar em " + situacao + ".");
-        }
+        estado = estado.retirar();
     }
 
     public void devolver() {
-        if ("EM_USO".equals(situacao)) {
-            situacao = "ENCERRADA";
-        } else {
-            throw new IllegalStateException(
-                    "Nao e possivel devolver em " + situacao + ".");
-        }
+        estado = estado.devolver();
     }
 
     public void cancelar() {
-        if ("SOLICITADA".equals(situacao)) {
-            situacao = "ENCERRADA";
-        } else {
-            throw new IllegalStateException(
-                    "Nao e possivel cancelar em " + situacao + ".");
-        }
+        estado = estado.cancelar();
     }
 
     public Usuario getSolicitante() {
